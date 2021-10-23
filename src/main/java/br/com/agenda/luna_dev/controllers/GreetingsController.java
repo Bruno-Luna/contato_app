@@ -91,9 +91,16 @@ public class GreetingsController {
     	
     	userRepository.deleteById(id);
 
-    	return new ResponseEntity<String>("Usuário deletado com sucesso.", HttpStatus.OK); /*CREATED = status 201*/
+    	return new ResponseEntity<String>("Usuário deletado com sucesso.", HttpStatus.OK); /*OK = status 200*/
     }
    
-    
+    @GetMapping(value = "/buscarId") /*Mapeia a URL*/
+    @ResponseBody  /*Descrição da resposta*/
+    public ResponseEntity<Usuario> buscarIdUsuario(@RequestParam(name = "id") Long id){ /* Recebe os dados para consultar*/
+    	
+       Usuario usuario =  userRepository.findById(id).get();
+
+    	return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);  /*OK = status 200*/
+    }
     
 }
