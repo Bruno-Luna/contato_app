@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -75,6 +76,21 @@ public class GreetingsController {
     	return new ResponseEntity<Usuario>(user, HttpStatus.CREATED); /*CREATED = status 201*/
     }
     
+    
+    @PutMapping(value = "/atualizar") /*Mapeia a URL*/
+    @ResponseBody  /*Descrição da resposta*/
+    public ResponseEntity<?> atualizarUsuario(@RequestBody Usuario usuario){ /* Recebe os dados para salvar*/
+    	
+    	if(usuario.getId() == null) {
+        	return new ResponseEntity<String>("ID não foi informado. Por favor informe-o.", HttpStatus.OK); /*OK = status 200*/
+    	}
+    	
+    	Usuario user = userRepository.saveAndFlush(usuario);
+
+    	return new ResponseEntity<Usuario>(user, HttpStatus.OK); /*OK = status 200*/
+    }
+    
+    
     /*
     @DeleteMapping(value = "/deletar/{id}")
     public void deletarUsuario(@PathVariable(value = "id") Long id) {
@@ -83,7 +99,7 @@ public class GreetingsController {
     
     Deleta por ID pela URL
     
-     */
+    */
     
     @DeleteMapping(value = "/deletar") /*Mapeia a URL*/
     @ResponseBody  /*Descrição da resposta*/
