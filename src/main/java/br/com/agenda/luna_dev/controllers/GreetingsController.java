@@ -21,25 +21,23 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.agenda.luna_dev.model.Usuario;
 import br.com.agenda.luna_dev.repository.UsuarioRepository;
 
+
 /**
- *
- * A sample greetings controller to return greeting text
+ * @author Bruno Luna
  */
+
 @RestController
 public class GreetingsController {
 	
 	@Autowired /* IC, CI ou CDI - INJEÇÃO DE DEPENDÊNCIA */
 	private UsuarioRepository userRepository;
-    /**
-     *
-     * @param name the name to greet
-     * @return greeting text
-     */
+	
     @RequestMapping(value = "/mostrarnome/{name}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public String greetingText(@PathVariable String name) {
         return "Agenda: " + name + "!";
     } 
+    
     
     @RequestMapping(value = "/ola/{nome}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
@@ -55,6 +53,7 @@ public class GreetingsController {
     	return "Olá, " + nome;
     }
     
+    
     @GetMapping(value = "/listarTodos")  /*Primeiro metódo da API*/
     @ResponseBody /*Retorna os dados para o corpo da resposta*/
     public ResponseEntity<List<Usuario>> listaUsuario(){
@@ -66,6 +65,7 @@ public class GreetingsController {
 //     return new ResponseEntity<List<Usuario>>(usuarios, HttpStatus.OK); /*Retorna a lista em formato JSON*/
      
     }
+    
     
     @PostMapping(value = "/salvar") /*Mapeia a URL*/
     @ResponseBody  /*Descrição da resposta*/
@@ -101,6 +101,7 @@ public class GreetingsController {
     
     */
     
+    
     @DeleteMapping(value = "/deletar") /*Mapeia a URL*/
     @ResponseBody  /*Descrição da resposta*/
     public ResponseEntity<String> deletarUsuario(@RequestParam Long id){ /* Recebe os dados para salvar*/
@@ -110,6 +111,7 @@ public class GreetingsController {
     	return new ResponseEntity<String>("Usuário deletado com sucesso.", HttpStatus.OK); /*OK = status 200*/
     }
    
+    
     @GetMapping(value = "/buscarId") /*Mapeia a URL*/
     @ResponseBody  /*Descrição da resposta*/
     public ResponseEntity<Usuario> buscarIdUsuario(@RequestParam(name = "id") Long id){ /* Recebe os dados para consultar*/
@@ -118,5 +120,18 @@ public class GreetingsController {
 
     	return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);  /*OK = status 200*/
     }
+    
+    
+    @GetMapping(value = "/buscarNome") /*Mapeia a URL*/
+    @ResponseBody  /*Descrição da resposta*/
+    public ResponseEntity<List<Usuario>> buscarNomeUsuario(@RequestParam(name = "nome") String nome){ /* Recebe os dados para consultar*/
+    	
+       List<Usuario> usuario =  userRepository.findByNomeContainingIgnoreCase(nome.trim()); //TRIM = Retira os espaços de uma string
+
+    	return new ResponseEntity<List<Usuario>>(usuario, HttpStatus.OK);  /*OK = status 200*/
+    }
+    
+    
+    
     
 }
