@@ -28,7 +28,7 @@
 	</header>
 
 	<form action="" class="bg-secondary d-flex align-items-center"
-		style="height: 80vh;">
+		style="height: 80vh;" id="form">
 		<div class="container bg-secondary" style="height: 80vh;">
 			<div class="row">
 				<div class="col-md-2">
@@ -48,9 +48,9 @@
 						placeholder="xx-xxxxxxxxx">
 				</div>
 			</div>
-			<button type="button" class="btn mt-4" onclick="salvar()">Salvar</button>
+			<button type="button" class="btn mt-4 ml-3" onclick="limpar()">Limpar</button>
 
-			<button type="button" class="btn mt-4 ml-3">Limpar</button>
+			<button type="button" class="btn mt-4" onclick="salvar()">Salvar</button>
 		</div>
 	</form>
 
@@ -67,20 +67,35 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 		crossorigin="anonymous">
-		
 	</script>
 
 	<!-- Função Buttons -->
 
 	<script>
+		
 		function salvar(){
 			var id = $("#id").val();
 			var nome = $("#nome").val();
 			var contato = $("#contato").val();
 			
-			alert(nome);
+		$.ajax({
+		  method: "POST",
+		  url: "salvar",
+		  data: JSON.stringify({id : id, nome : nome, contato : contato}),
+		    contentType: 'application/json; charset=utf-8',
+		    success: function(response){
+		    	$("#id").val(response.id);
+		    	alert("Salvado com sucesso!")
+		    }
+		  }).fail(function (xhr, status, errorThrown){
+			  alert("Erro ao salvar: " + xhr.responseText);
+		  });		
 		}
-	
+		
+		
+		function limpar(){
+			document.getElementById('form').reset();			
+		}
 	</script>
 </body>
 </html>
