@@ -12,15 +12,16 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
 	rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
 <title>Contato_app | salve seus contatos.</title>
 </head>
 <body>
-	<header class="bg-dark d-flex align-items-center" style="height: 20vh;">
+	<header class="bg-dark d-flex align-items-center">
 		<div class="container">
 			<div class="row">
 				<div class="col">
-					<h2 class="text-light">
-						Contato_<span class="text-warning">app</span>
+					<h2>
+						Contato_<span class="app">app</span>
 					</h2>
 				</div>
 			</div>
@@ -29,7 +30,7 @@
 
 	<form action="" class="bg-secondary d-flex align-items-center"
 		style="height: 80vh;" id="form">
-		<div class="container bg-secondary" style="height: 80vh;">
+		<div class="container bg-secondary">
 			<div class="row">
 				<div class="col-md-2">
 					<label for="id" class="form-label mt-4 text-light">ID:</label> 
@@ -48,9 +49,11 @@
 						placeholder="xx-xxxxxxxxx">
 				</div>
 			</div>
-			<button type="button" class="btn mt-4 ml-3" onclick="limpar()">Limpar</button>
-
-			<button type="button" class="btn mt-4" onclick="salvar()">Salvar</button>
+			<div class="content-btn">
+				<button type="button" class="limpar" onclick="limpar()">Limpar</button>
+	
+				<button type="button" class="salvar" onclick="salvar()">Salvar</button>			
+			</div>
 		</div>
 	</form>
 
@@ -91,7 +94,6 @@
 			  alert("Erro ao salvar: " + xhr.responseText);
 		  });		
 		}
-		
 		
 		function limpar(){
 			document.getElementById('form').reset();			
