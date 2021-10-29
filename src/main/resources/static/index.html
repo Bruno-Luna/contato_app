@@ -12,7 +12,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
 	rel="stylesheet">
-	<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 <title>Contato_app | salve seus contatos.</title>
 </head>
 <body>
@@ -33,13 +33,13 @@
 		<div class="container bg-secondary">
 			<div class="row">
 				<div class="col-md-2">
-					<label for="id" class="form-label mt-4 text-light">ID:</label> 
-					<input type="text" class="form-control" id="id" readonly="readonly">
+					<label for="id" class="form-label mt-4 text-light">ID:</label> <input
+						type="text" class="form-control" id="id" readonly="readonly">
 				</div>
 				<div class="col">
-					<label for="nome" class="form-label mt-4 text-light">Nome do contato:</label> 
-					<input type="text" class="form-control" id="nome" placeholder="Insira o nome:"
-						required="required">
+					<label for="nome" class="form-label mt-4 text-light">Nome
+						do contato:</label> <input type="text" class="form-control" id="nome"
+						placeholder="Insira o nome:" required="required">
 				</div>
 			</div>
 			<div class="row align-items-end">
@@ -51,53 +51,108 @@
 			</div>
 			<div class="content-btn">
 				<button type="button" class="limpar" onclick="limpar()">Limpar</button>
-	
-				<button type="button" class="salvar" onclick="salvar()">Salvar</button>			
+
+				<button type="button" class="salvar" onclick="salvar()">Salvar</button>
+
+				<button type="button" class="salvar" data-bs-toggle="modal"
+					data-bs-target="#modalPesquisar" onclick="">🔍</button>
+
 			</div>
 		</div>
 	</form>
 
 
-		<!-- JQuery -->
-	
+	<!-- MODAL -->
+
+	<div class="modal fade" id="modalPesquisar" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Pesquisar
+						contato:</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="mb-3">
+							<label for="nomeBuscar" class="col-form-label">Nome:</label> <input
+								type="text" class="form-control" id="nomeBuscar">
+						</div>
+
+						<button type="button" class="salvar" onclick="buscar()">Buscar</button>
+
+					</form>
+					<table class="table" id="tabelaResultado">
+						<thead>
+							<tr>
+								<th scope="col">ID</th>
+								<th scope="col">Nome</th>
+								<th scope="col">Contato</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Fechar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- JQuery -->
+
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
 		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 		crossorigin="anonymous">
-	</script>
 		
+	</script>
+
 	<!-- Option 1: Bootstrap Bundle with Popper -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 		crossorigin="anonymous">
+		
 	</script>
 
 	<!-- Função Buttons -->
 
 	<script>
-		
-		function salvar(){
+		function salvar() {
 			var id = $("#id").val();
 			var nome = $("#nome").val();
 			var contato = $("#contato").val();
-			
-		$.ajax({
-		  method: "POST",
-		  url: "salvar",
-		  data: JSON.stringify({id : id, nome : nome, contato : contato}),
-		    contentType: 'application/json; charset=utf-8',
-		    success: function(response){
-		    	$("#id").val(response.id);
-		    	alert("Salvado com sucesso!")
-		    }
-		  }).fail(function (xhr, status, errorThrown){
-			  alert("Erro ao salvar: " + xhr.responseText);
-		  });		
+
+			$.ajax({
+				method : "POST",
+				url : "salvar",
+				data : JSON.stringify({
+					id : id,
+					nome : nome,
+					contato : contato
+				}),
+				contentType : 'application/json; charset=utf-8',
+				success : function(response) {
+					$("#id").val(response.id);
+					alert("Salvado com sucesso!")
+				}
+			}).fail(function(xhr, status, errorThrown) {
+				alert("Erro ao salvar: " + xhr.responseText);
+			});
+		}
+
+		function limpar() {
+			document.getElementById('form').reset();
 		}
 		
-		function limpar(){
-			document.getElementById('form').reset();			
-		}
+		
 	</script>
 </body>
 </html>
