@@ -91,6 +91,8 @@
 								<th scope="col">Nome</th>
 								<th scope="col">Contato</th>
 								<th scope="col">Modificar</th>
+								<th scope="col">Apagar</th>
+	
 							</tr>
 						</thead>
 						<tbody>
@@ -165,7 +167,7 @@
 						$('#tabelaResultado > tbody > tr').remove();
 						
 						for(var i = 0; i < response.length; i++){
-						$('#tabelaResultado > tbody').append('<tr><td>'+response[i].id+'</td><td>'+response[i].nome+'</td><td>'+response[i].contato+'</td><td>	<button type="button" onclick="edicao('+response[i].id+')" class="salvar">👀</button></td></tr>');
+						$('#tabelaResultado > tbody').append('<tr id="'+response[i].id+'"><td>'+response[i].id+'</td><td>'+response[i].nome+'</td><td>'+response[i].contato+'</td><td>	<button type="button" onclick="edicao('+response[i].id+')" class="salvar">👀</button></td><td><button type="button" class="salvar" onclick="apagar('+response[i].id+')">Apagar</button></td></tr>');
 							}					
 					}
 				}).fail(function(xhr, status, errorThrown) {
@@ -174,8 +176,6 @@
 				
 				}
 			}
-		
-		
 		
 		function edicao(id){
 			
@@ -193,8 +193,35 @@
 					
 				}
 			}).fail(function(xhr, status, errorThrown) {
-				alert("Erro ao buscar usuario por ID: " + xhr.responseText);
+				alert("Erro ao buscar contato por ID: " + xhr.responseText);
 			});
+		}
+		
+		
+		function apagar(id){
+			
+			if(confirm('Deseja realmente apagar este contato?')){
+				
+				$.ajax({
+					method : "DELETE",
+					url : "deletar" ,
+					data : "id=" + id ,
+					success : function(response) {
+										
+						$('#'+ id).remove();
+						
+						alert(response);
+						document.getElementById('form').reset();
+
+					}
+				}).fail(function(xhr, status, errorThrown) {
+					alert("Erro ao deletar contato por ID: " + xhr.responseText);
+				});
+				
+			}
+			
+		
+			 
 		}
 	</script>
 </body>
