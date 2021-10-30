@@ -90,6 +90,7 @@
 								<th scope="col">ID</th>
 								<th scope="col">Nome</th>
 								<th scope="col">Contato</th>
+								<th scope="col">Modificar</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -152,7 +153,49 @@
 			document.getElementById('form').reset();
 		}
 		
+		function buscar(){
+			nome = $('#nomeBuscar').val();
+			
+			if (nome != null && nome.trim() != ''){
+				$.ajax({
+					method : "GET",
+					url : "buscarNome" ,
+					data : "nome=" + nome ,
+					success : function(response) {
+						$('#tabelaResultado > tbody > tr').remove();
+						
+						for(var i = 0; i < response.length; i++){
+						$('#tabelaResultado > tbody').append('<tr><td>'+response[i].id+'</td><td>'+response[i].nome+'</td><td>'+response[i].contato+'</td><td>	<button type="button" onclick="edicao('+response[i].id+')" class="salvar">👀</button></td></tr>');
+							}					
+					}
+				}).fail(function(xhr, status, errorThrown) {
+					alert("Erro ao salvar: " + xhr.responseText);
+				});
+				
+				}
+			}
 		
+		
+		
+		function edicao(id){
+			
+			$.ajax({
+				method : "GET",
+				url : "buscarId" ,
+				data : "id=" + id ,
+				success : function(response) {
+									
+					$("#id").val(response.id);
+					$("#nome").val(response.nome);
+					$("#contato").val(response.contato);
+					
+					$('#modalPesquisar').modal('hide')
+					
+				}
+			}).fail(function(xhr, status, errorThrown) {
+				alert("Erro ao buscar usuario por ID: " + xhr.responseText);
+			});
+		}
 	</script>
 </body>
 </html>
