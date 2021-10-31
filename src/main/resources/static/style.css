@@ -57,7 +57,7 @@ input{
 	margin-top: 1.2rem;
 }
 
-.limpar, .salvar{
+.limpar, .salvar, .btnBuscar, .btnFechar{
 	font-size:1.16rem;
 	font-weight:500;
 	width: 6.6rem;
@@ -66,30 +66,80 @@ input{
 	border-radius: .28rem;
 }	
 
-.limpar{
+.limpar, .btnFechar{
 	border: 1px solid #FFC107;
 	background-color: #FFC107;
 	color: #212529;	
 }	
 
-.limpar:hover{
+.limpar:hover, .btnFechar:hover{
 	color: #FFC107;
 	background-color: transparent;
 }
 
-.salvar{
+.salvar, .btnBuscar{
 	border: 1px solid #212529;
 	background-color: #212529;
 	color: #FFC107;	
 }
 
-.salvar:hover{
+.salvar:hover, .btnBuscar:hover{
 	color: #212529;
 	background-color: transparent;
 }
 
 
+.btnIcon{
+	cursor: pointer;
+}
 
+.apagar{
+	font-size: 2rem;
+}
+
+.editar{
+	font-size: 1.5rem;	
+}
+
+/* MODAL*/
+
+.modal-content {
+	background-color: #a9a9a9;
+}
+
+.modal-header h5, th {
+	color: #FFC107;
+}
+
+
+.btnBuscar{
+	float: right;
+
+}
+
+form, tbody{
+	color: #fff;
+}
+
+.col-form-label{
+	font-size: 1.18rem;
+}
+
+
+
+/* Tabela */
+.table>tbody {
+    vertical-align: initial;
+}
+
+thead tr {
+	font-size: 1.1rem;
+}
+
+tbody tr {
+	color: #000;
+	font-size: 1.1rem;
+}
 /* Media Queries */
    
 @media only screen and (min-width:300px) and (max-width:568px){

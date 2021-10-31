@@ -81,7 +81,7 @@
 								type="text" class="form-control" id="nomeBuscar">
 						</div>
 
-						<button type="button" class="salvar" onclick="buscar()">Buscar</button>
+						<button type="button" class="btnBuscar" onclick="buscar()">Buscar</button>
 
 					</form>
 					<table class="table" id="tabelaResultado">
@@ -90,8 +90,8 @@
 								<th scope="col">ID</th>
 								<th scope="col">Nome</th>
 								<th scope="col">Contato</th>
-								<th scope="col">Modificar</th>
-								<th scope="col">Apagar</th>
+								<th scope="col"></th>
+								<th scope="col"></th>
 	
 							</tr>
 						</thead>
@@ -102,7 +102,7 @@
 
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
+					<button type="button" class="btnFechar"
 						data-bs-dismiss="modal">Fechar</button>
 				</div>
 			</div>
@@ -167,7 +167,7 @@
 						$('#tabelaResultado > tbody > tr').remove();
 						
 						for(var i = 0; i < response.length; i++){
-						$('#tabelaResultado > tbody').append('<tr id="'+response[i].id+'"><td>'+response[i].id+'</td><td>'+response[i].nome+'</td><td>'+response[i].contato+'</td><td>	<button type="button" onclick="edicao('+response[i].id+')" class="salvar">👀</button></td><td><button type="button" class="salvar" onclick="apagar('+response[i].id+')">Apagar</button></td></tr>');
+						$('#tabelaResultado > tbody').append('<tr id="'+response[i].id+'"><td>'+response[i].id+'</td><td>'+response[i].nome+'</td><td>'+response[i].contato+'</td><td>	<span class="btnIcon editar" onclick="edicao('+response[i].id+')">📝</span></td><td><span class="btnIcon apagar" onclick="apagar('+response[i].id+')">🗑</span></td></tr>');
 							}					
 					}
 				}).fail(function(xhr, status, errorThrown) {
@@ -211,8 +211,6 @@
 						$('#'+ id).remove();
 						
 						alert(response);
-						document.getElementById('form').reset();
-
 					}
 				}).fail(function(xhr, status, errorThrown) {
 					alert("Erro ao deletar contato por ID: " + xhr.responseText);
