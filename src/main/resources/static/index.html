@@ -77,28 +77,27 @@
 				<div class="modal-body">
 					<form>
 						<div class="mb-3">
-							<label for="nomeBuscar" class="col-form-label">Nome:</label> <input
-								type="text" class="form-control" id="nomeBuscar">
+							<label for="nomeBuscar" class="col-form-label">Nome do contato:</label> 
+							<input type="text" class="form-control" id="nomeBuscar">
 						</div>
-
-						<button type="button" class="btnBuscar" onclick="buscar()">Buscar</button>
-
+							<button type="button" class="btnBuscar mb-3" onclick="buscar()">Buscar</button>
 					</form>
-					<table class="table" id="tabelaResultado">
-						<thead>
-							<tr>
-								<th scope="col">ID</th>
-								<th scope="col">Nome</th>
-								<th scope="col">Contato</th>
-								<th scope="col"></th>
-								<th scope="col"></th>
-	
-							</tr>
-						</thead>
-						<tbody>
-						</tbody>
-					</table>
-
+					
+					<div style=" width:100%; overflow: scroll;">
+						<table class="table" id="tabelaResultado">
+							<thead>
+								<tr>
+									<th scope="col">ID</th>
+									<th scope="col">Nome</th>
+									<th scope="col">Contato</th>
+									<th scope="col"></th>
+									<th scope="col"></th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
 
 				</div>
 				<div class="modal-footer">
@@ -132,6 +131,12 @@
 			var id = $("#id").val();
 			var nome = $("#nome").val();
 			var contato = $("#contato").val();
+			
+			if(nome == null || nome != null && nome.trim()==''){
+				$("#nome").focus();
+				alert('O campo nome está vazio.');
+				return;
+			}
 
 			$.ajax({
 				method : "POST",
@@ -171,7 +176,7 @@
 							}					
 					}
 				}).fail(function(xhr, status, errorThrown) {
-					alert("Erro ao salvar: " + xhr.responseText);
+					alert("Erro ao buscar: " + xhr.responseText);
 				});
 				
 				}
