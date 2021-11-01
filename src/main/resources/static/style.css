@@ -30,7 +30,6 @@ form .container {
 }
 
 
-
 /* LABEL */
 
 label{
@@ -57,14 +56,19 @@ input{
 	margin-top: 1.2rem;
 }
 
-.limpar, .salvar, .btnBuscar, .btnFechar{
+.limpar, .salvar, .btnBuscar, .btnFechar, .btnListar{
 	font-size:1.16rem;
 	font-weight:500;
 	width: 6.6rem;
 	height: 2.4rem;
-	transition: 250ms ease;
+	transition: 300ms ease;
 	border-radius: .28rem;
-}	
+}
+
+.btnListar{
+	width: auto;
+	
+}
 
 .limpar, .btnFechar{
 	border: 1px solid #FFC107;
@@ -77,13 +81,13 @@ input{
 	background-color: transparent;
 }
 
-.salvar, .btnBuscar{
+.salvar, .btnBuscar, .btnListar{
 	border: 1px solid #212529;
 	background-color: #212529;
 	color: #FFC107;	
 }
 
-.salvar:hover, .btnBuscar:hover{
+.salvar:hover, .btnBuscar:hover, .btnListar:hover{
 	color: #212529;
 	background-color: transparent;
 }
@@ -93,12 +97,8 @@ input{
 	cursor: pointer;
 }
 
-.apagar{
-	font-size: 2rem;
-}
-
-.editar{
-	font-size: 1.5rem;	
+.apagar, .editar{
+	font-size: 1.6rem;
 }
 
 /* MODAL*/
@@ -107,22 +107,31 @@ input{
 	background-color: #a9a9a9;
 }
 
-.modal-header h5, th {
-	color: #FFC107;
+.modal-header{
+	background-color: #FFC107;
+	border-bottom: 2px double;
 }
 
+.modal-header h5, th {
+	color: #212529;
+}
+
+btn-close{
+	color: #FFC107;
+}
 
 .btnBuscar{
 	float: right;
 
 }
 
-form, tbody{
-	color: #fff;
+.modal-footer{
+	border-top: double #212529;
 }
 
 .col-form-label{
 	font-size: 1.18rem;
+	font-weight: 500;
 }
 
 
@@ -141,6 +150,11 @@ tbody tr {
 	font-size: 1.1rem;
 }
 
+tbody tr, thead tr{
+	border-bottom: double ;
+}
+
+
 /* Media Queries */
    
 @media only screen and (min-width:300px) and (max-width:568px){
@@ -148,9 +162,6 @@ tbody tr {
 	form .container {
 	height: 80vh;  
 	width: 80vw;
+	}
+	
 }
-	
-
-	
-
-    }

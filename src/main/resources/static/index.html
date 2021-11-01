@@ -69,25 +69,24 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Pesquisar
-						contato:</h5>
+					<h5 class="modal-title" id="exampleModalLabel">Lista de
+						Contatos:</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
 					<form>
 						<div class="mb-3">
-							<label for="nomeBuscar" class="col-form-label">Nome do contato:</label> 
-							<input type="text" class="form-control" id="nomeBuscar">
+							<label for="nomeBuscar" class="col-form-label nomeContato">Nome
+								do contato:</label> <input type="text" class="form-control"
+								id="nomeBuscar" placeholder="Faça sua busca aqui...">
 						</div>
-							
-							
-							<button type="button" class="btnBuscar mb-3" onclick="listarTodos()">Listar todos</button>
-						
-							<button type="button" class="btnBuscar mb-3" onclick="buscar()">Buscar</button>
+
+						<button type="button" class="btnBuscar mb-3" onclick="buscar()">Buscar</button>
+
 					</form>
-					
-					<div style=" height:50vh; width:100%; overflow-y: scroll; overflow-x: hidden; ">
+
+					<div style="height: 40vh; width: 100%; overflow-y: auto;">
 						<table class="table" id="tabelaResultado">
 							<thead>
 								<tr>
@@ -105,8 +104,10 @@
 
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btnFechar"
-						data-bs-dismiss="modal">Fechar</button>
+					<button type="button" class="btnListar" onclick="listarTodos()">Listar
+						todos</button>
+
+					<button type="button" class="btnFechar" data-bs-dismiss="modal">Fechar</button>
 				</div>
 			</div>
 		</div>
@@ -135,8 +136,8 @@
 			var id = $("#id").val();
 			var nome = $("#nome").val();
 			var contato = $("#contato").val();
-			
-			if(nome == null || nome != null && nome.trim()==''){
+
+			if (nome == null || nome != null && nome.trim() == '') {
 				$("#nome").focus();
 				alert('O campo nome está vazio.');
 				return;
@@ -163,88 +164,115 @@
 		function limpar() {
 			document.getElementById('form').reset();
 		}
-		
-		function buscar(){
+
+		function buscar() {
 			nome = $('#nomeBuscar').val();
-			
-			if (nome != null && nome.trim() != ''){
-				$.ajax({
-					method : "GET",
-					url : "buscarNome" ,
-					data : "nome=" + nome ,
-					success : function(response) {
-						$('#tabelaResultado > tbody > tr').remove();
-						
-						for(var i = 0; i < response.length; i++){
-						$('#tabelaResultado > tbody').append('<tr id="'+response[i].id+'"><td>'+response[i].id+'</td><td>'+response[i].nome+'</td><td>'+response[i].contato+'</td><td>	<span class="btnIcon editar" onclick="edicao('+response[i].id+')">📝</span></td><td><span class="btnIcon apagar" onclick="apagar('+response[i].id+')">🗑</span></td></tr>');
-							}					
-					}
-				}).fail(function(xhr, status, errorThrown) {
-					alert("Erro ao buscar: " + xhr.responseText);
-				});
-				
-				}
+
+			if (nome != null && nome.trim() != '') {
+				$
+						.ajax(
+								{
+									method : "GET",
+									url : "buscarNome",
+									data : "nome=" + nome,
+									success : function(response) {
+										$('#tabelaResultado > tbody > tr')
+												.remove();
+
+										for (var i = 0; i < response.length; i++) {
+											$('#tabelaResultado > tbody')
+													.append(
+															'<tr id="'+response[i].id+'"><td>'
+																	+ response[i].id
+																	+ '</td><td>'
+																	+ response[i].nome
+																	+ '</td><td>'
+																	+ response[i].contato
+																	+ '</td><td>	<span class="btnIcon editar" onclick="edicao('
+																	+ response[i].id
+																	+ ')">📝</span></td><td><span class="btnIcon apagar" onclick="apagar('
+																	+ response[i].id
+																	+ ')">❌</span></td></tr>');
+										}
+									}
+								}).fail(function(xhr, status, errorThrown) {
+							alert("Erro ao buscar: " + xhr.responseText);
+						});
+
 			}
-		
-		function listarTodos(){			
-			$.ajax({
-				method : "GET",
-				url : "listarTodos" ,
-				success : function(response) {
-					$('#tabelaResultado > tbody > tr').remove();
-					
-					for(var i = 0; i < response.length; i++){
-					$('#tabelaResultado > tbody').append('<tr id="'+response[i].id+'"><td>'+response[i].id+'</td><td>'+response[i].nome+'</td><td>'+response[i].contato+'</td><td>	<span class="btnIcon editar" onclick="edicao('+response[i].id+')">📝</span></td><td><span class="btnIcon apagar" onclick="apagar('+response[i].id+')">🗑</span></td></tr>');
-						}					
-				}
-			}).fail(function(xhr, status, errorThrown) {
-				alert("Erro ao buscar: " + xhr.responseText);
-			});
 		}
-		
-		function edicao(id){
-			
+
+		function listarTodos() {
+			$
+					.ajax(
+							{
+								method : "GET",
+								url : "listarTodos",
+								success : function(response) {
+									$('#tabelaResultado > tbody > tr').remove();
+
+									for (var i = 0; i < response.length; i++) {
+										$('#tabelaResultado > tbody')
+												.append(
+														'<tr id="'+response[i].id+'"><td>'
+																+ response[i].id
+																+ '</td><td>'
+																+ response[i].nome
+																+ '</td><td>'
+																+ response[i].contato
+																+ '</td><td>	<span class="btnIcon editar" onclick="edicao('
+																+ response[i].id
+																+ ')">📝</span></td><td><span class="btnIcon apagar" onclick="apagar('
+																+ response[i].id
+																+ ')">❌</span></td></tr>');
+									}
+								}
+							}).fail(function(xhr, status, errorThrown) {
+						alert("Erro ao buscar: " + xhr.responseText);
+					});
+		}
+
+		function edicao(id) {
+
 			$.ajax({
 				method : "GET",
-				url : "buscarId" ,
-				data : "id=" + id ,
+				url : "buscarId",
+				data : "id=" + id,
 				success : function(response) {
-									
+
 					$("#id").val(response.id);
 					$("#nome").val(response.nome);
 					$("#contato").val(response.contato);
-					
+
 					$('#modalPesquisar').modal('hide')
-					
+
 				}
 			}).fail(function(xhr, status, errorThrown) {
 				alert("Erro ao buscar contato por ID: " + xhr.responseText);
 			});
 		}
-		
-		
-		function apagar(id){
-			
-			if(confirm('Deseja realmente apagar este contato?')){
-				
+
+		function apagar(id) {
+
+			if (confirm('Deseja realmente apagar este contato?')) {
+
 				$.ajax({
 					method : "DELETE",
-					url : "deletar" ,
-					data : "id=" + id ,
+					url : "deletar",
+					data : "id=" + id,
 					success : function(response) {
-										
-						$('#'+ id).remove();
-						
+
+						$('#' + id).remove();
+
 						alert(response);
 					}
-				}).fail(function(xhr, status, errorThrown) {
-					alert("Erro ao deletar contato por ID: " + xhr.responseText);
-				});
-				
+				}).fail(
+						function(xhr, status, errorThrown) {
+							alert("Erro ao deletar contato por ID: "
+									+ xhr.responseText);
+						});
+
 			}
-			
-		
-			 
 		}
 	</script>
 </body>
