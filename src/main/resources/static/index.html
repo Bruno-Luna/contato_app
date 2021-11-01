@@ -12,6 +12,8 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
 	rel="stylesheet">
+	<script src="https://kit.fontawesome.com/1ab94d0eba.js" crossorigin="anonymous"></script>
+	
 <link rel="stylesheet" href="style.css">
 <title>Contato_app | salve seus contatos.</title>
 </head>
@@ -190,9 +192,9 @@
 																	+ response[i].contato
 																	+ '</td><td>	<span class="btnIcon editar" onclick="edicao('
 																	+ response[i].id
-																	+ ')">📝</span></td><td><span class="btnIcon apagar" onclick="apagar('
+																	+ ')"><i class="far fa-edit"></i></span></td><td><span class="btnIcon apagar" onclick="apagar('
 																	+ response[i].id
-																	+ ')">❌</span></td></tr>');
+																	+ ')"><i class="far fa-trash-alt"></i></span></td></tr>');
 										}
 									}
 								}).fail(function(xhr, status, errorThrown) {
@@ -222,9 +224,9 @@
 																+ response[i].contato
 																+ '</td><td>	<span class="btnIcon editar" onclick="edicao('
 																+ response[i].id
-																+ ')">📝</span></td><td><span class="btnIcon apagar" onclick="apagar('
+																+ ')"><i class="far fa-edit"></i></span></td><td><span class="btnIcon apagar" onclick="apagar('
 																+ response[i].id
-																+ ')">❌</span></td></tr>');
+																+ ')"><i class="far fa-trash-alt"></i></span></td></tr>');
 									}
 								}
 							}).fail(function(xhr, status, errorThrown) {
