@@ -22,7 +22,7 @@ public class Usuario implements Serializable{
 	@NotBlank
 	private String nome;
 	
-	private Long contato;
+	private String contato;
 
 	public Long getId() {
 		return id;
@@ -40,12 +40,14 @@ public class Usuario implements Serializable{
 		this.nome = nome;
 	}
 
-	public Long getContato() {
+	public String getContato() {
 		return contato;
 	}
 
-	public void setContato(Long contato) {
+	public void setContato(String contato) {
 		this.contato = contato;
 	}
+
+	
 	
 }
