@@ -108,7 +108,7 @@ public class GreetingsController {
     	
     	userRepository.deleteById(id);
 
-    	return new ResponseEntity<String>("Usuário deletado com sucesso.", HttpStatus.OK); /*OK = status 200*/
+    	return new ResponseEntity<String>("Contato deletado com sucesso.", HttpStatus.OK); /*OK = status 200*/
     }
    
     
