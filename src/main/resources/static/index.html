@@ -39,9 +39,12 @@
 						type="text" class="form-control" id="id" readonly="readonly">
 				</div>
 				<div class="col">
-					<label for="nome" class="form-label mt-4 text-light">Nome
-						do contato:</label> <input type="text" class="form-control" id="nome"
-						placeholder="Insira o nome:" required="required">
+						<label for="nome" class="form-label mt-4 text-light">Nome
+						do contato:</label>
+						<span data-bs-toggle="modal"
+					data-bs-target="#modalPesquisar"><i class="fas fa-search"></i></span> 
+						<input type="text" class="form-control" id="nome"
+						placeholder="Insira o nome:" required="required">					
 				</div>
 			</div>
 			<div class="row align-items-end">
@@ -52,13 +55,8 @@
 				</div>
 			</div>
 			<div class="content-btn">
-				<button type="button" class="salvar" onclick="salvar()">Salvar</button>
-
 				<button type="button" class="limpar" onclick="limpar()">Limpar</button>
-
-				<button type="button" class="salvar" data-bs-toggle="modal"
-					data-bs-target="#modalPesquisar" onclick="">🔍</button>
-
+				<button type="button" class="salvar" onclick="salvar()">Salvar</button>
 			</div>
 		</div>
 	</form>

@@ -18,7 +18,7 @@ h2{
 	color: #fff;
 }
 
-span.app{
+span.app, .fa-search{
 	color: #FFC107;
 }
 
@@ -36,7 +36,22 @@ label{
 	font-size: 1.4rem;
 }
 
+/* ICONE */
+.fa-search:before{
+	font-size: 1.4rem;
+	cursor: pointer;
+}
+i.fas{
+	position: relative;
+	bottom: -32px;
+	float: right;
+	transition: 300ms ease;
+	
+}
 
+i.fas:hover{
+	color: #212529;		
+}
 /* INPUTS */
 
 input{
