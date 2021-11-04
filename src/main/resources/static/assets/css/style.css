@@ -8,7 +8,7 @@ body{
 /* HEADER */
 
 header{
-	height: 20vh;
+	height: 16vh;
 }
 
 
@@ -22,10 +22,8 @@ span.app, .fa-search{
 	color: #FFC107;
 }
 
-
-
 form .container {
-	height: 80vh;  
+	height: 50vh;  
 	width: 50vw;
 }
 
@@ -59,8 +57,6 @@ input{
 	font-size: 1.16rem!important;
 	
 }
-
-
 
 /* BOTÕES */
 
@@ -169,7 +165,30 @@ tbody tr, thead tr{
 	border-bottom: double ;
 }
 
+/* FOOTER */
 
+footer{
+	height: 4vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+    background-color: hsl(210, 11%, 25%);	
+
+}
+
+footer  span{
+	color: hsl(0, 0%, 90%);
+}
+
+footer span a{
+	color: hsl(45, 100%, 41%); 
+	text-decoration: none;
+}
+
+footer span a:hover{
+ 	color: #FFC107;
+}
 
 /* Media Queries */
    
