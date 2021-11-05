@@ -192,11 +192,45 @@ footer span a:hover{
 
 /* Media Queries */
    
-@media only screen and (min-width:300px) and (max-width:568px){
+@media only screen and (max-width:768px){
 
-	form .container {
-	height: 80vh;  
-	width: 80vw;
+	label{
+	font-size: 1.2rem;
+}
+
+	h2 {
+    font-size: 2.2rem;
 	}
 	
+	form .container {
+    height: 70vh;
+    width: 82vw;
+	}
+	
+	i.fas {
+    position: relative;
+    bottom: 78px;
+	}
+	
+	.fa-search:before {
+    font-size: 1.2rem;
+	}
+	
+	.content-btn{
+	display: flex;
+	justify-content: center;
+	}
+	
+	.limpar, .salvar{
+		width: 50%
+	}
+	
+	input{
+	height: 2.5rem;	
+	font-size: 1.1rem!important;
+	}
+	
+	footer {
+    height: 6vh;
+	}
 }
