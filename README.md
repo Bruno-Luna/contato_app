@@ -21,6 +21,6 @@ Bruno Luna da Silva.
 
 <img  src="https://avatars.githubusercontent.com/u/80595156?v=4" width="12%;" border-radius="100px;" />
 <a href="https://www.linkedin.com/in/lunabr/" alt="Linkedin">
-<img src="https://img.shields.io/badge/-Linkedin-1C1C1C?style=for-the-badge&logo=Linkedin&logoColor=00FFFF&link=https://www.linkedin.com/in/bruno-luna-11590720a/"/>
+<img src="https://img.shields.io/badge/-Linkedin-1C1C1C?style=for-the-badge&logo=Linkedin&logoColor=00FFFF&link=https://www.linkedin.com/in/bruno-luna-11590720a/" width="10%;"/>
 </a>
 
